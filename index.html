@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Crystal Drop</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        .btn { background: #0076f6; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 10px; cursor: pointer; margin-top: 20px; font-weight: bold;}
+        .case { border: 2px solid #333; padding: 20px; border-radius: 15px; background: #222; max-width: 300px; margin: 0 auto; }
+        .win { font-size: 20px; color: #ffb700; margin-top: 20px; font-weight: bold; min-height: 30px; }
+    </style>
+</head>
+<body>
+    <h2>💎 CS2 CRYSTAL DROP 💎</h2>
+    <br>
+    <div class="case">
+        <h3>📦 Кейс №1</h3>
+        <p>Цена: 50 Кристаллов</p>
+        <button class="btn" onclick="openCase()">ОТКРЫТЬ КЕЙС</button>
+    </div>
+    <div class="win" id="drop-result"></div>
+
+    <script>
+        // Инициализация телеграм окна
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Распахнуть на весь экран
+
+        const skins = [
+            "★ Karambit | Case Hardened", 
+            "AWP | Dragon Lore", 
+            "AK-47 | Vulcan", 
+            "M4A4 | Howl", 
+            "Glock-18 | Fade"
+        ];
+
+        function openCase() {
+            document.getElementById('drop-result').innerText = "🎰 Крутим... 🎰";
+            
+            setTimeout(() => {
+                const randomSkin = skins[Math.floor(Math.random() * skins.length)];
+                document.getElementById('drop-result').innerText = "🎉 Выпало:\n" + randomSkin;
+                
+                // Вибрация телефона при выигрыше
+                if (tg.HapticFeedback) {
+                    tg.HapticFeedback.notificationOccurred("success");
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
